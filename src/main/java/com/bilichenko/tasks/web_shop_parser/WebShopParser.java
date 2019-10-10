@@ -15,7 +15,8 @@ import java.util.stream.Collectors;
 public class WebShopParser {
 
     private static final String TARGET_URL = "https://www.aboutyou.de/maenner/bekleidung";
-    private static final String TARGET_CLASS_NAME = "_tile_b48ab";
+    private static final String ATTRIBUTE = "data-test-id";
+    private static final String ATTRIBUTE_VALUE = "ProductTile";
     private static final String OUTPUT_FILE = "products.json";
 
     private static ElementMapper<Product> elementMapper = new ElementToProductMapper();
@@ -24,7 +25,7 @@ public class WebShopParser {
     public static void main(String[] args) throws IOException {
         Document document = JsoupHelper.getDocument(TARGET_URL);
 
-        Elements elements = document.getElementsByClass(TARGET_CLASS_NAME);
+        Elements elements = document.getElementsByAttributeValue(ATTRIBUTE, ATTRIBUTE_VALUE);
 
         List<Product> productList = elements.stream()
                 .map(element -> elementMapper.mapElement(element))
