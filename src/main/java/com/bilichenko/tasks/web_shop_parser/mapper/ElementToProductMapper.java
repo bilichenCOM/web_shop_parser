@@ -21,7 +21,7 @@ public class ElementToProductMapper implements ElementMapper<Product> {
     @Override
     public Product mapElement(Element element) {
         Product product = new Product();
-        product.setArticelId(element.attr("id"));
+        product.setArticleId(element.attr("id"));
         product.setName(getTextOfFirstElementByAttributeValue(element, NAME_ATTRIBUTE, NAME_ATTRIBUTE_VALUE));
         product.setBrand(getTextOfFirstElementByAttributeValue(element, BRAND_ATTRIBUTE, BRAND_ATTRIBUTE_VALUE));
         product.setColors(getColorListFromElementByAttributeValue(element, COLOR_ATTRIBUTE, COLOR_ATTRIBUTE_VALUE));
