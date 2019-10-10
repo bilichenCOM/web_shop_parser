@@ -17,6 +17,7 @@ public class WebShopParser {
     private static final String TARGET_URL = "https://www.aboutyou.de/maenner/bekleidung";
     private static final String ATTRIBUTE = "data-test-id";
     private static final String ATTRIBUTE_VALUE = "ProductTile";
+
     private static final String OUTPUT_FILE = "products.json";
 
     private static ElementMapper<Product> elementMapper = new ElementToProductMapper();

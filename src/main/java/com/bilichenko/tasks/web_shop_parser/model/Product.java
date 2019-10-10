@@ -6,7 +6,6 @@ public class Product {
 
     private String articleId;
     private String name;
-    private String brand;
     private List<String> colors;
     private List<String> sizes;
     private Double price;
@@ -25,14 +24,6 @@ public class Product {
 
     public void setName(String name) {
         this.name = name;
-    }
-
-    public String getBrand() {
-        return brand;
-    }
-
-    public void setBrand(String brand) {
-        this.brand = brand;
     }
 
     public List<String> getColors() {
