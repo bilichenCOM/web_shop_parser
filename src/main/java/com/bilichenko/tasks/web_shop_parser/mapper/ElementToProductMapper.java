@@ -7,6 +7,8 @@ public class ElementToProductMapper implements ElementMapper<Product> {
 
     @Override
     public Product mapElement(Element element) {
-        return null;
+        Product product = new Product();
+        //TODO: implement mapping of product
+        return product;
     }
 }
