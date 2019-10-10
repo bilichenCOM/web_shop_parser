@@ -25,12 +25,14 @@ public class WebShopParser {
 
     public static void main(String[] args) throws IOException {
         Document document = JsoupHelper.getDocument(TARGET_URL);
+        System.out.printf("Request number: %d;\r\n", 1);
 
         Elements elements = document.getElementsByAttributeValue(ATTRIBUTE, ATTRIBUTE_VALUE);
 
         List<Product> productList = elements.stream()
                 .map(element -> elementMapper.mapElement(element))
                 .collect(Collectors.toList());
+        System.out.printf("Total number of products parsed: %d;\r\n", productList.size());
 
         objectMapper.writeValue(new File(OUTPUT_FILE), productList);
     }
