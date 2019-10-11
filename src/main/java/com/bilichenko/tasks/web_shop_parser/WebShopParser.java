@@ -15,9 +15,6 @@ import java.util.stream.Collectors;
 public class WebShopParser {
 
     private static final String TARGET_URL = "https://www.aboutyou.de/maenner/bekleidung";
-    private static final String ATTRIBUTE = "data-test-id";
-    private static final String ATTRIBUTE_VALUE = "ProductTile";
-
     private static final String OUTPUT_FILE = "products.json";
 
     private static ElementMapper<Product> elementMapper = new ElementToProductMapper();
@@ -25,14 +22,14 @@ public class WebShopParser {
 
     public static void main(String[] args) throws IOException {
         Document document = JsoupHelper.getDocument(TARGET_URL);
-        System.out.printf("Request number: %d;\r\n", 1);
+        System.out.println("Requests number: " + 1);
 
-        Elements elements = document.getElementsByAttributeValue(ATTRIBUTE, ATTRIBUTE_VALUE);
+        Elements elements = document.getElementsByAttributeValue("data-test-id", "ProductTile");
 
         List<Product> productList = elements.stream()
                 .map(element -> elementMapper.mapElement(element))
                 .collect(Collectors.toList());
-        System.out.printf("Total number of products parsed: %d;\r\n", productList.size());
+        System.out.println("Total number of products parsed: " + productList.size());
 
         objectMapper.writeValue(new File(OUTPUT_FILE), productList);
     }
