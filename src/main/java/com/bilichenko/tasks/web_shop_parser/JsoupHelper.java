@@ -11,6 +11,7 @@ public class JsoupHelper {
         Document document = null;
         try {
             document = Jsoup.connect(targetUrl).get();
+            //TODO: implement getting full page in minimal request number;
         } catch (IOException e) {
             System.err.println("Cannot get document with url: " + targetUrl);
             System.err.println("Reason: " + e.getMessage());
