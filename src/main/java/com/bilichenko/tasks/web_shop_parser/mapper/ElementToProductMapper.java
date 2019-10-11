@@ -41,11 +41,13 @@ public class ElementToProductMapper implements ElementMapper<Product> {
     }
 
     private List<String> getSizesListFromString(String sizesString) {
-        if (!sizesString.contains(":")) { return Collections.singletonList(sizesString); }
+        if (!sizesString.contains(":")) {
+            return Collections.singletonList(sizesString);
+        }
         List<String> sizes;
 
         String[] colonDividedArray = sizesString.split(":"); // size values go after colon on web page
-        if (colonDividedArray.length == 2) {
+        if (colonDividedArray.length == 2) { // check if there are sizes after colon
             String sizesAsString = colonDividedArray[1].replaceAll("[^\\w\\s]", "").trim();
             sizes = Arrays.asList(sizesAsString.split("\\s"));
         } else {
@@ -72,7 +74,7 @@ public class ElementToProductMapper implements ElementMapper<Product> {
             return price;
         }
 
-        return null;
+        return price;
     }
 
     private Double getDoubleFromElementByAttributeValue(Element element, String key, String value) {
@@ -87,13 +89,10 @@ public class ElementToProductMapper implements ElementMapper<Product> {
 
     private double convertTextToDouble(String text) {
         String filteredText = text.replaceAll("[^\\d,.]", "").replace(',', '.');
-        double doubleValue = Double.valueOf(filteredText);
-        return doubleValue;
+        return Double.valueOf(filteredText);
     }
 
     private String getTextOfFirstElementByAttributeValue(Element element, String key, String value) {
-        String text = element.getElementsByAttributeValue(key, value).first().text();
-
-        return text;
+        return element.getElementsByAttributeValue(key, value).first().text();
     }
 }
